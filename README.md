@@ -1,29 +1,29 @@
 # Job Salary Prediction & Analysis Dashboard
 
-An interactive Streamlit dashboard that analyzes and predicts job salaries using real-world job dataset.  
-This project mimics a data analyst internship-style workflow from data cleaning, EDA, modeling, to deployment.
+This interactive Streamlit dashboard helps users analyze and predict job salaries based on position, experience level, company location, and more using real-world data.
 
----
+## Features
 
-##  Features
+- **Exploratory Data Analysis** (EDA) with clean visualizations
+- **Dynamic filters** for job titles and locations
+- **Search functionality** for titles and companies
+- **Machine Learning Model** to predict job salaries
+- Clean and responsive dashboard layout
 
--  Data cleaning and preprocessing using Pandas and NumPy
--  Exploratory Data Analysis with Seaborn & Matplotlib
--  Salary Prediction using Scikit-learn regression models
--  Insights by role, country, experience, and remote work
--  Model performance evaluation (MAE, R²)
--  Deployed using Streamlit
--  Easy install via `requirements.txt`
+## Dataset
 
----
+- Source: `ds_salaries.csv`  
+- Contains job titles, company locations, remote status, and salary details.
 
-## 📁 Project Structure
-├── app/
-├── data/
-├── eda/
-├── model/
-├── utils/
-├── eda_job_salary.py
-├── requirements.txt
-└── README.md
+## Tech Stack
 
+- Python
+- Pandas, Matplotlib, Seaborn
+- Scikit-learn (ML)
+- Streamlit (Web Dashboard)
+
+## 🚀 How to Run Locally
+
+```bash
+pip install -r requirements.txt
+streamlit run job_salary_dashboard.py
