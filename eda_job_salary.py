@@ -10,7 +10,7 @@ df = pd.read_csv("data/ds_salaries.csv")
 
 # ----------------- Streamlit Page Setup ----------------- #
 st.set_page_config(page_title="Job Salary Insight Dashboard", layout="wide")
-st.title("💼 Job Salary Insight Dashboard")
+st.title("Job Salary Insight Dashboard")
 
 # ----------------- Session State for Filters ----------------- #
 if 'filtered_df' not in st.session_state:
@@ -88,7 +88,7 @@ model = RandomForestRegressor(random_state=42)
 model.fit(X, y)
 
 # ----------------- Salary Prediction ----------------- #
-st.subheader("💰 Predict Job Salary")
+st.subheader(" Predict Job Salary")
 with st.form("prediction_form"):
     selected_job = st.selectbox("Select Job Title", df['job_title'].unique())
     selected_emp_type = st.selectbox("Select Employment Type", df['employment_type'].unique())
@@ -106,3 +106,4 @@ with st.form("prediction_form"):
         })
         prediction = model.predict(input_data)[0]
         st.success(f"Predicted Salary: ${int(prediction):,}")
+
