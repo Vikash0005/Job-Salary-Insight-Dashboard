@@ -55,14 +55,14 @@ if not filtered_df.empty:
     with col1:
         st.subheader("Average Salary by Job Title")
         job_salary = filtered_df.groupby('job_title')['salary_in_usd'].mean().sort_values(ascending=False)
-        fig1, ax1 = plt.subplots()
+        fig1, ax1 = plt.subplots(figsize=(8, 5))
         sns.barplot(x=job_salary.values, y=job_salary.index, ax=ax1, color='skyblue')
         ax1.set_xlabel("Salary")
         st.pyplot(fig1)
 
     with col2:
         st.subheader("Salary Distribution")
-        fig2, ax2 = plt.subplots()
+        fig2, ax2 = plt.subplots(figsize=(8, 5))
         sns.histplot(filtered_df['salary_in_usd'], bins=20, kde=False, ax=ax2, color='dodgerblue')
         ax2.set_xlabel("Salary")
         st.pyplot(fig2)
@@ -72,7 +72,7 @@ if not filtered_df.empty:
     with col3:
         st.subheader("Salary by Location")
         loc_salary = filtered_df.groupby('company_location')['salary_in_usd'].mean()
-        fig3, ax3 = plt.subplots()
+        fig3, ax3 = plt.subplots(figsize=(6, 6))
         ax3.pie(loc_salary.values, labels=loc_salary.index, autopct='%1.1f%%', startangle=140)
         ax3.axis('equal')
         st.pyplot(fig3)
@@ -81,12 +81,20 @@ if not filtered_df.empty:
         st.subheader("Salary by Company")
         if 'company' in df.columns:
             comp_salary = filtered_df.groupby('company')['salary_in_usd'].mean().sort_values(ascending=False)
-            fig4, ax4 = plt.subplots()
+            fig4, ax4 = plt.subplots(figsize=(8, 5))
             sns.barplot(x=comp_salary.values, y=comp_salary.index, ax=ax4, color='steelblue')
             ax4.set_xlabel("Salary")
             st.pyplot(fig4)
         else:
             st.info("Company data not available in the dataset.")
+
+    # ------------------ Additional Visualization ------------------ #
+    st.subheader("Salary Distribution by Experience Level")
+    fig5, ax5 = plt.subplots(figsize=(8, 5))
+    sns.boxplot(x='experience_level', y='salary_in_usd', data=filtered_df, ax=ax5, palette="Set2")
+    ax5.set_xlabel("Experience Level")
+    ax5.set_ylabel("Salary (USD)")
+    st.pyplot(fig5)
 
 else:
     st.warning("No data found for selected filters.")
@@ -123,9 +131,4 @@ with st.form("prediction_form"):
         input_data = pd.DataFrame({
             'job_title_enc': [le_job.transform([selected_job])[0]],
             'employment_type_enc': [le_type.transform([selected_emp_type])[0]],
-            'experience_level_enc': [le_exp.transform([selected_exp])[0]],
-            'company_location_enc': [le_loc.transform([selected_loc])[0]]
-        })
-
-        prediction = model.predict(input_data)[0]
-        st.success(f"Predicted Salary: ${int(prediction):,}")
+            'experience_level_enc': [le_exp.transform_]()
